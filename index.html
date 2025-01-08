@@ -8,56 +8,90 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
-      max-width: 100%; /* Prevent content overflow */
+      max-width: 100%; 
     }
 
-    input {
-      margin: 5px;
-      padding: 8px;  
-    } 
+    .input-container {
+      display: flex;
+      align-items: center;
+      gap: 10px; 
+      flex-wrap: wrap; 
+      justify-content: flex-start; 
+    }
+
+    .input-container button {
+      flex: 1 0 100%;
+      display: flex;
+      justify-content: center; 
+      align-items: center; 
+      margin-top: 5px; 
+      margin-bottom:  5px;
+      max-width: 200px;
+    }
+
+    .input-container input {
+      flex: 1; 
+      min-width: 100px; 
+      max-width: 150px; 
+      padding: 4px;
+      box-sizing: border-box; 
+    }
+
+    .input-container label {
+      white-space: nowrap;
+    }
 
     button {
-      margin: 5px;
-      padding: 8px;  
+      padding: 8px;
       background-color: #007bff;
       color: white;
-      border-radius: 5px;    
+      border-radius: 5px;
+      border: none;
     }
 
-    /* Make the table responsive */
     table {
       width: 100%;
       border-collapse: collapse;
-      table-layout: auto; /* Dynamic column width */
+      table-layout: auto; 
       overflow-x: auto;
     }
 
-    /* Table border and cell styling */
-    table, th, td {
-      border: 1px solid black; /* Restores table border */
+    th, td {
+      border: 1px solid black; 
     }
 
     th, td {
       padding: 10px;
       text-align: left;
-      word-wrap: break-word; /* Prevents text overflow */
+      word-wrap: break-word; 
     }
 
-    /* Header color */
+   
     th {
-      background-color: #f4f4f4; /* Light gray background for header */
+      background-color: #f4f4f4; 
       font-weight: bold;
     }
+    td:nth-child(3) { 
+      word-wrap: break-word;
+      overflow-wrap: break-word; 
+      white-space: normal; 
+      max-width: 150px; 
+    }
 
-    /* Responsive design for small screens */
     @media screen and (max-width: 600px) {
       table {
         display: block;
-        overflow-x: auto; /* Horizontal scrolling on small screens */
+        overflow-x: auto; 
       }
       th, td {
         padding: 8px;
-        font-size: 14px; /* Adjust font size for readability */
+        font-size: 14px;
+      }
+      td:nth-child(3) { 
+        word-wrap: break-word;
+        overflow-wrap: break-word; 
+        white-space: normal; 
+        max-width: 100px; 
       }
     }
   </style>
@@ -65,11 +99,17 @@
 <body>
   <h1>Subnet Calculator</h1>
   <p>Silahkan masukan IP yang ingin dihitung beserta Netmask.</p>
-  <label for="ip"></label>
-  <input type="text" id="ip" placeholder="Contoh : 192.168.0.1" />
-  <label for="netmask"> / </label>
-  <input type="text" id="netmask" placeholder="Contoh : 24" />
-  <button onclick="calculateSubnet()">Hitung</button>
+  <div class="input-container">
+    <label for="ip"></label>
+    <input type="text" id="ip" placeholder="Contoh : 192.168.0.1" />
+  
+    <label for="netmask"> / </label>
+    <input type="text" id="netmask" placeholder="Contoh : 24" />
+  
+    <button onclick="calculateSubnet()">Hitung</button>
+  </div>  
+
+  <br>
 
   <div style="overflow-x: auto;">
     <table id="resultTable">
